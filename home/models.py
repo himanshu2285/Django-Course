@@ -8,5 +8,13 @@ class Students(models.Model):
     email = models.EmailField(unique=True)
     
     
-def __str__(self):
-    return self.name
+    
+
+    
+class Car(models.Model):
+    car_name = models.CharField(max_length=500)
+    speed = models.IntegerField(default=50)
+
+    def __str__(self):
+        return self.car_name + " " + str(self.speed)
+    

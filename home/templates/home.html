@@ -1,0 +1,35 @@
+{% extends 'common.html' %}
+{% block start %}
+
+<title>{{ page }}</title>
+<div class="container pt-3">
+    <a href="/contact/" class="btn btn-secondary">Contact</a>
+    |
+    <a href="/about/" class="btn btn-secondary">About</a>
+</div>
+<h1 class="container">Hello, this is the home view.</h1>
+
+<table class="container">
+    <tr>
+        <th>Sr No.</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Can vote</th>
+    </tr>
+    {% for people in peoples %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{people.name}}</td>
+        <td>{{people.age}}</td>
+        <td {% if people.age < 18 %} style="background: red;" {% endif %}>
+            {% if people.age >= 18 %}
+            👍
+            {% else %}
+            👎
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

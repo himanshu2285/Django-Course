@@ -16,6 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from home.views import *
+from vege.views import *
+from django.conf.urls.static import static as staticfiles
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -23,3 +28,10 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('vege.urls'))
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += staticfiles(settings.MEDIA_URL, 
+                        document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()

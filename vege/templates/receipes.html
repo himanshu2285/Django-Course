@@ -3,7 +3,8 @@
 
 <title>Receipes Page</title>
 
-<div class="container pt-3">
+<div class="container mt-5">
+
     <form class="col-6 mx-auto card py-3 px-3 shadow-lg" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h2>Add Recipe</h2>
@@ -23,6 +24,50 @@
 
         <button type="submit" class="btn btn-success">Add Recipe</button>
     </form>
+
+
+    <hr>
+    <div class="mt-5">
+      <div class="mx-auto col-6">
+        <form>
+        <div class="mb-3">
+          <label for="ReceipeName" class="form-label">Search Food</label>
+            <input type="text" name="search" class="form-control" id="SearchReceipe" placeholder="Search Receipe">
+            <button type="submit" class="btn btn-primary mt-3">Search Recipe</button>
+        </div>
+
+        </form>
+      </div>
+    </div>
 </div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Receipe Name</th>
+      <th scope="col">Receipe Description</th>
+      <th scope="col">Receipe Image</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for receipe in receipes %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{receipe.receipe_name}}</td>
+      <td>{{receipe.receipe_description}}</td>
+      <td>
+        <img src="/media/{{receipe.receipe_image}}" style="height: 200px;">
+      </td>
+      <td>
+        <a href="/update-receipe/{{receipe.id}}/" class="btn btn-success mt-2 mb-1">Update</a>
+        <a href="/delete-receipe/{{receipe.id}}/" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

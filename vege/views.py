@@ -64,3 +64,7 @@ def delete_receipe(request, id):
     queryset = Receipe.objects.get(id=id)
     queryset.delete()
     return redirect('/receipes/')
+
+
+# def home(request):
+#     return HttpResponse("This is home page")
